@@ -11,9 +11,11 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.6.0'
-    testImplementation 'com.codeborne:selenide:5.15.1'
+    testImplementation 'com.codeborne:selenide:5.18.0'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:4.3.1'
 }
 
 test {
     useJUnitPlatform()
+    systemProperty 'selenium.headless', System.getProperty('selenium.headless')
 }
