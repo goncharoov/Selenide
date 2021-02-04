@@ -40,6 +40,7 @@ public class CardAppTest {
         driver.quit();
         driver = null;
     }
+
     @Test
     void shouldReserve() {
         open("http://localhost:9999");
