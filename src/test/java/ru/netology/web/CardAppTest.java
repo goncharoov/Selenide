@@ -1,17 +1,7 @@
 package ru.netology.web;
 
-
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -23,25 +13,6 @@ import static java.time.Duration.*;
 
 
 public class CardAppTest {
-    private WebDriver driver;
-
-    @BeforeAll
-    static void setUpAll() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeEach
-    void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-    }
-
-    @AfterEach
-    void tearDown() {
-        driver.quit();
-        driver = null;
-    }
 
     @Test
     void shouldReserveTest() {
@@ -56,7 +27,6 @@ public class CardAppTest {
         $("[data-test-id = 'agreement']").click();
         $(byText("Забронировать")).click();
         $("[data-test-id = 'notification'] .notification__content").shouldBe(visible, ofMillis(15000)).shouldHave(exactText("Встреча успешно забронирована на " + inputDate));
-
     }
 
 
