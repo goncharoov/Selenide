@@ -2,6 +2,7 @@ package ru.netology.web;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -15,7 +16,7 @@ import static java.time.Duration.*;
 public class CardAppTest {
 
     @Test
-    void shouldReserveTest() {
+    void shouldReserve() {
         open("http://localhost:9999");
         $("[placeholder = 'Город']").setValue("Москва");
         $("[placeholder = 'Дата встречи']").sendKeys(Keys.DELETE);
@@ -28,6 +29,4 @@ public class CardAppTest {
         $(byText("Забронировать")).click();
         $("[data-test-id = 'notification'] .notification__content").shouldBe(visible, ofMillis(15000)).shouldHave(exactText("Встреча успешно забронирована на " + inputDate));
     }
-
-
 }
