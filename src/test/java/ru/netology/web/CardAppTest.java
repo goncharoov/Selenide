@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static java.time.Duration.*;
 
-
 public class CardAppTest {
 
     @Test
