@@ -1,51 +1,25 @@
 package ru.netology.web;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
-import static java.time.Duration.*;
+import static java.time.Duration.ofMillis;
 
 public class CardAppTest {
-    private WebDriver driver;
-
-    @BeforeAll
-    static void setUpAll() {
-//        System.setProperty("webdriver.chrome.driver", "driver/chromedriver");
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeEach
-    void setUp() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-    }
-
-    @AfterEach
-    void tearDown() {
-        driver.quit();
-        driver = null;
-    }
 
     @Test
     void shouldReserve() {
         open("http://localhost:9999");
         $("[placeholder = 'Город']").setValue("Москва");
-        $("[placeholder = 'Дата встречи']").sendKeys(Keys.DELETE);
+        $("[placeholder = 'Дата встречи']").sendKeys(Keys.BACK_SPACE);
         LocalDate date = LocalDate.now().plusDays(3);
         String inputDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         $("[placeholder = 'Дата встречи']").setValue(inputDate);
