@@ -19,7 +19,7 @@ public class CardAppTest {
     void shouldReserve() {
         open("http://localhost:9999");
         $("[placeholder = 'Город']").setValue("Москва");
-        $("[placeholder = 'Дата встречи']").sendKeys(Keys.BACK_SPACE);
+        $("[placeholder = 'Дата встречи']").sendKeys(Keys.CONTROL + "A", Keys.DELETE);
         LocalDate date = LocalDate.now().plusDays(3);
         String inputDate = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
         $("[placeholder = 'Дата встречи']").setValue(inputDate);
